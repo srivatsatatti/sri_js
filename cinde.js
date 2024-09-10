@@ -5,70 +5,36 @@ var lat_btnClicked = false;
 var lat_Status = "init";
 var lat_isMin = false;
 var lat_isFrameVisible = false;
- var objElement = window.top.document;
+var objElement = window.top.document;
 function LATIconShow() {
-
-console.log("=========== Function called ==============");
-// Search for the DOM element for the utility menu container
-
-['macroponent-f51912f4c700201072b211d4d8c26010',
-    'shadowRoot',
-
-    'sn-polaris-layout',
-    'shadowRoot',
-
-    'sn-polaris-header',
-    'shadowRoot',
-
-    '.utility-menu'
-
-].forEach(function (strId) {
-
-    if (!objElement) {
-
-        console.log("Element not found at step: " + strId);
-
-        return;
-
-    }
-
-
-
-    objElement = strId === 'shadowRoot' ? objElement.shadowRoot : objElement.querySelector(strId);
-
-});
-
-console.log("objElement ========OBJE ELEMENT FOUND ================="); console.log(objElement);
-
-setTimeout(function () {
-
-    var parentDiv = $(objElement).find('#my_custom_icon');
-
-    //console.log(parentDiv);
-
-
-    if (parentDiv.length >
-        0) {
-
-        console.log("Parent div found: # my_custom_icon Hiding icon...");
-
-        parentDiv.hide();
-
-    } else {
-
-        console.log("Parent div with ID my_custom_icon not found.");
-
-    }
-
-}, 1000);
+    console.log("=========== Function called ==============");
+    // Search for the DOM element for the utility menu container
+    ['macroponent-f51912f4c700201072b211d4d8c26010',
+        'shadowRoot',
+        'sn-polaris-layout',
+        'shadowRoot',
+        'sn-polaris-header',
+        'shadowRoot',
+        '.utility-menu'
+    ].forEach(function (strId) {
+        if (!objElement) {
+            console.log("Element not found at step: " + strId);
+            return;
+        }
+        objElement = strId === 'shadowRoot' ? objElement.shadowRoot : objElement.querySelector(strId);
+    });
+    console.log("objElement ======== OBJECT ELEMENT FOUND =================");
+    console.log(objElement);
+    setTimeout(function () {
+        var parentDiv = $(objElement).find('#my_custom_icon');
+        if (parentDiv.length > 0) {
+            console.log("Parent div found: #my_custom_icon. Hiding icon...");
+            parentDiv.hide();
+        } else {
+            console.log("Parent div with ID my_custom_icon not found.");
+        }
+    }, 1000);
 }
-
-/*var _ntpLiveAgentDtls = {
-   userId: 1,
-   userUniqueId: '1c4ab999-fb0e-4a8d-b929-c59e64d6e0e0',            
-    authToken : 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6IkpXVCJ9.eyJJZCI6IjEiLCJVbmlxdWVfSWQiOiIxYzRhYjk5OS1mYjBlLTRhOGQtYjkyOS1jNTllNjRkNmUwZTAiLCJGaXJzdE5hbWUiOiJBZG1pbiIsIkxhc3ROYW1lIjoiIiwiRW1haWwiOiJhZG1pbkBzeW1waG9ueXN1bW1pdC5jb20iLCJVc2VybmFtZSI6IkFkbWluIiwiVXNlckFnZW50Ijoie1wiX2RcIjpcIk1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xMjAuMC4wLjAgU2FmYXJpLzUzNy4zNiBFZGcvMTIwLjAuMC4wXCIsXCJfclwiOlwiaHR0cDovL2xvY2FsaG9zdDo0MjAwL1wifSIsIm5iZiI6MTcwNDc3NjU5MSwiZXhwIjoxNzA0ODE5NzkxLCJpYXQiOjE3MDQ3NzY1OTF9.bb-pJEWSwKd7nMGdEeRcq7k5NfZXeujP8_CieutmVphc8MvZebz-pQAsRV8YZo6FS3SpBlhZ8I1edSwDlsVSigaEKuGIwULw5b1F4R2WjzvGO7equYTbrdaeHOXHHVdmt_CXubT5eufFwRix3FL64OjSwF9VTHuQJY0cS4R7bLisFPsUZAk2wujLMw2nUTdCkIwocJoXBhx8pbMXAV_nhJQFdjvfRtG_5k_v-2c30K6aOYtc3ndV1NuKnX2BFmRUV-bYbWLfviaFr2WJiagxC84cvNRmkrBBKznOVN41ZSmocyeepOLyDiQRM02ycrCq2Hx7AeLNVEeXezlQNqkQqg',
-cindeToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6IkpXVCJ9.eyJ1c2VySUQiOiJjNGQyMmYyNi01YzE2LTQxMDQtOGFmNS1mYzUzNDU1ZmM3MDAiLCJ1c2VyRW1haWwiOiJjYXJsb3MuckBzdW1taXRhaWNvZS5jbyIsIm5iZiI6MTcwNzM3Mzc1MCwiZXhwIjoxNzA3Mzc1NTUwLCJpYXQiOjE3MDczNzM3NTB9.-lSJ41qsZJZCvZ_i4i1M3O8Oi6KqoHMI3EPeOf1SU9g'
-};*/
 LATIconShow();
 chatUser.cindeversion = 2 ;
 chatUser.tkn = chatUser.sessionID;

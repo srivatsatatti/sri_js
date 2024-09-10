@@ -8,7 +8,7 @@ var lat_isFrameVisible = false;
  var objElement = window.top.document;
 function LATIconShow() {
 
-
+console.log("=========== Function called ==============");
 
 
 // Search for the DOM element for the utility menu container
@@ -40,7 +40,7 @@ function LATIconShow() {
 
 });
 
-//console.log("objElement ========================="); console.log(objElement);
+console.log("objElement ========OBJE ELEMENT FOUND ================="); console.log(objElement);
 
 setTimeout(function () {
 

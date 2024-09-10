@@ -8,7 +8,6 @@ var lat_isFrameVisible = false;
 var objElement = window.top.document;
 
 function LATIconShow() {
-    console.log("=========== Function called 01 ==============");
     // Search for the DOM element for the utility menu container
     ['macroponent-f51912f4c700201072b211d4d8c26010',
         'shadowRoot',
@@ -24,17 +23,13 @@ function LATIconShow() {
         }
         objElement = strId === 'shadowRoot' ? objElement.shadowRoot : objElement.querySelector(strId);
     });
-    console.log("objElement ======== OBJECT ELEMENT FOUND =================");
-    console.log(objElement);
     setTimeout(function () {
         if (!objElement) {
             console.log("objElement is not found or is null.");
             return;
         }
         // Check if the objElement is part of a shadow DOM, and use querySelector directly
-        alert("SEARCH ICON");
         var parentDiv = objElement.querySelector('#my_custom_icon');  // Use querySelector
-
         if (parentDiv) {
             console.log("Parent div found: #my_custom_icon. Hiding icon...");
             parentDiv.style.display = 'none';  // Hide the element using standard JS

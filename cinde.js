@@ -28,11 +28,10 @@ function LATIconShow() {
             console.log("objElement is not found or is null.");
             return;
         }
-        // Check if the objElement is part of a shadow DOM, and use querySelector directly
-        var parentDiv = objElement.querySelector('#my_custom_icon');  // Use querySelector
+        var parentDiv = objElement.querySelector('#my_custom_icon');  
         if (parentDiv) {
             console.log("Parent div found: #my_custom_icon. Hiding icon...");
-            parentDiv.style.display = 'none';  // Hide the element using standard JS
+            parentDiv.style.display = 'none';  
         } else {
             console.log("Parent div with ID my_custom_icon not found.");
         }

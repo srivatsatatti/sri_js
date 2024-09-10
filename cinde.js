@@ -7,7 +7,7 @@ var lat_isMin = false;
 var lat_isFrameVisible = false;
 var objElement = window.top.document;
 function LATIconShow() {
-    console.log("=========== Function called ==============");
+    console.log("=========== Function called 01 ==============");
     // Search for the DOM element for the utility menu container
     ['macroponent-f51912f4c700201072b211d4d8c26010',
         'shadowRoot',

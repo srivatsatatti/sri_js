@@ -7,7 +7,7 @@ var lat_isMin = false;
 var lat_isFrameVisible = false;
 var objElement = window.top.document;
 function LATIconShow() {
-    alert("FUNCTION CALLED");
+    //alert("FUNCTION CALLED");
     console.log("=========== Function called 01 ==============");
     // Search for the DOM element for the utility menu container
     ['macroponent-f51912f4c700201072b211d4d8c26010',
@@ -27,6 +27,10 @@ function LATIconShow() {
     console.log("objElement ======== OBJECT ELEMENT FOUND =================");
     console.log(objElement);
     setTimeout(function () {
+        if (!objElement) {
+            console.log("objElement is not found or is null.");
+            return;
+        }
         alert("SEARCH ICON");
         var parentDiv = $(objElement).find('#my_custom_icon');
         if (parentDiv.length > 0) {

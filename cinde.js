@@ -9,8 +9,6 @@ var lat_isFrameVisible = false;
 function LATIconShow() {
 
 console.log("=========== Function called ==============");
-
-
 // Search for the DOM element for the utility menu container
 
 ['macroponent-f51912f4c700201072b211d4d8c26010',

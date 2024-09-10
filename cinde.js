@@ -27,7 +27,7 @@ function LATIconShow() {
     console.log("objElement ======== OBJECT ELEMENT FOUND =================");
     console.log(objElement);
     setTimeout(function () {
-        //search icon
+        //search  icon
         var parentDiv = $(objElement).find('#my_custom_icon');
         if (parentDiv.length > 0) {
             console.log("Parent div found: #my_custom_icon. Hiding icon...");

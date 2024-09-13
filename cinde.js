@@ -14,10 +14,7 @@ script.src = "https://code.jquery.com/jquery-2.2.1.min.js";
 head.appendChild(script);
 
 function getIConElement() {
-   
-
-
-
+      alert("getICONElement");
     // Search for the DOM element for the utility menu container
 
     ['macroponent-f51912f4c700201072b211d4d8c26010',

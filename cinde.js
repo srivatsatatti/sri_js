@@ -6,44 +6,88 @@ var lat_Status = "init";
 var lat_isMin = false;
 var lat_isFrameVisible = false;
 var objElement = window.top.document;
-function LATIconShow() {
+var objDivElement='';
+var head = document.getElementsByTagName('head')[0];
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = "https://code.jquery.com/jquery-2.2.1.min.js";
+head.appendChild(script);
+
+function getIConElement() {
+   
+
+
+
     // Search for the DOM element for the utility menu container
+
     ['macroponent-f51912f4c700201072b211d4d8c26010',
         'shadowRoot',
+
         'sn-polaris-layout',
         'shadowRoot',
+
         'sn-polaris-header',
         'shadowRoot',
+
         '.utility-menu'
+
     ].forEach(function (strId) {
+
         if (!objElement) {
+
             console.log("Element not found at step: " + strId);
+
             return;
+
         }
+
+
+
         objElement = strId === 'shadowRoot' ? objElement.shadowRoot : objElement.querySelector(strId);
+
     });
+
+    //console.log("objElement ========================="); console.log(objElement);
+    if (objDivElement != '') {
+        return objDivElement;
+    }
     setTimeout(function () {
-        if (!objElement) {
+        
+         if (!objElement) {
             console.log("objElement is not found or is null.");
             return;
         }
-        var parentDiv = objElement.querySelector('#my_custom_icon');  
+       
+        var parentDiv = $(objElement).querySelector('#my_custom_icon');
+
+        //console.log(parentDiv);
+
+
         if (parentDiv) {
-            console.log("Parent div found: #my_custom_icon. Hiding icon...");
-            parentDiv.style.display = 'none';  
+
+            console.log("Parent div found: # my_custom_icon Hiding icon...");
+            parentDiv.style.display = 'none';
+            objDivElement = parentDiv;
+            return parentDiv;
+
         } else {
+
             console.log("Parent div with ID my_custom_icon not found.");
+
         }
+
     }, 1000);
 }
-LATIconShow();
-chatUser.cindeversion = 2 ;
+
+
+getIConElement();
+chatUser.cindeversion = 2;
 chatUser.tkn = chatUser.sessionID;
 utk = chatUser.tkn
 var lat_chatUser = chatUser;
 var utk;
 //$("#live-agent-counter").hide();
- // $('#btnCinde_Lat').hide();
+// $('#btnCinde_Lat').hide();
 function lat_addStyleString(str) {
     var node = document.createElement('style');
     node.innerHTML = str;
@@ -56,7 +100,7 @@ window.onunload = function (event) { ClearUserAgentChat(); };
 IsUserLoggedOut = false;
 var keepAlive = function () {
     var apiURL = 'https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net' + '/api/lat/keepAliveAgent/';
-    fetch(apiURL + lat_chatUser.userId+'/'+IsUserLoggedOut )
+    fetch(apiURL + lat_chatUser.userId + '/' + IsUserLoggedOut)
         .then(function (response) {
             //console.log("Keep alive sent" + "frmCINDE");          
         })
@@ -74,19 +118,7 @@ var tid = setInterval(keepAlive, 5000);
 //var dashboardPage = "testlat.html"; var thisPage = window.location.href; if (thisPage.indexOf(dashboardPage) === -1) { lat_blockChat = true; }
 if (!lat_blockChat) {
 
-    //var auth = getCookie("AuthToken");
-    //var lastAuth = window.sessionStorage.getItem('lat_session');
-    //if (lastAuth !== null) {
-    //    if (auth !== lastAuth) {
-    //        window.sessionStorage.removeItem('lat_tenanttoken');
-    //        isNewSession = true;
-    //        lat_getTenantToken();
-    //    } else {
-    //        isNewSession = false;
-    //        lat_Status = true;
-    //    }
-    //} else {
-    //
+   
 
     isNewSession = true;
     lat_Status = "init";
@@ -133,9 +165,9 @@ function showLatFrame() {
         // lat_iframe.onload = function () { lat_iframe.contentWindow.postMessage({ "action": "setqueue", "queue": userqueue, "agentid": lat_chatUser.userId }, '*'); };
         //var url = document.getElementById('lat_eurekaframe').src;
         //var tabOrWindow = window.open('http://localhost:3979/AgentModule/dist/live-agent/index.html?utk=' + utk, '_blank');
-        var tabOrWindow = window.open('https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net/AgentModule/dist/live-agent/index.html?utk=' + utk + '&uid=' + chatUser.userName, '_blank');                
-            tabOrWindow.focus();
-        
+        var tabOrWindow = window.open('https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net/AgentModule/dist/live-agent/index.html?utk=' + utk + '&uid=' + chatUser.userName, '_blank');
+        tabOrWindow.focus();
+
         // lat_iframe.setAttribute('src', cindeUrl);
     } else {
         $('#lat_eurekaframe').toggle('fast').css({ 'background-color': '#fff', 'border': '2px solid #68A1AF', 'border-top': '5px solid #68A1AF', 'text-align': 'justify', 'height': '80%', 'width': '0', 'position': 'fixed', 'top': '50%', 'left': '50%', 'transform': 'translate(-50%, -50%)', 'border-radius': '10px', 'box-shadow': '5px 10px 18px #888888' }).attr('seamless', 'seamless').animate({ 'width': '1024px' }, 1000);
@@ -148,7 +180,7 @@ function showLatFrame() {
 
 function lat_getTenantToken() {
 
-    
+
     lat_tenantToken = chatUser.tkn;
     OnTenantToken();
     // $.ajax({
@@ -172,24 +204,34 @@ function lat_getTenantToken() {
 
 
 function getAuth_Lat_Token(response) {
-    lat_chatUser = response;  
+    lat_chatUser = response;
     window.sessionStorage.setItem('lat_tenanttoken', lat_tenantToken)
     triggerLAT();
 }
 function OnTenantToken(response) {
-    if (chatUser.cindeversion != null && chatUser.cindeversion > 1) {        
+    if (chatUser.cindeversion != null && chatUser.cindeversion > 1) {
         var url = 'https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net/api/token/getUser';
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: JSON.stringify(chatUser),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: getAuth_Lat_Token,
-            failure: function (response) {
-                alert("Sorry, we were unable to authenticate to your company. Please contact the admin, if the problem persists.");
+        var data = JSON.stringify(chatUser);
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function (res) {
+            if (this.readyState === 4) {
+                getAuth_Lat_Token(JSON.parse(this.responseText));
+                console.log(this.responseText);
             }
         });
+
+        xhr.open("POST", url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //xhr.setRequestHeader("Cookie", "ARRAffinity=edde094bb54f277f5e603d1c2c37b64c118c75b9690f3a2d6da2ec3f81f15e73; ARRAffinitySameSite=edde094bb54f277f5e603d1c2c37b64c118c75b9690f3a2d6da2ec3f81f15e73");
+
+        xhr.send(data);
+
+
+
+
     } else {
 
         if (response.d) {
@@ -207,11 +249,13 @@ function OnTenantToken(response) {
 
 function triggerLAT() {
     if (lat_tenantToken.length > 10) {
-       $(objElement).find('#my_custom_icon').on('click', latclick);
-        lat_container.innerHTML = "<div id=\"btnCinde_Lat\"  onclick=\"latclick();\"><span id=\"cinde_latbadge\" class=\"badge\" style=\"position: absolute;top: 1px;right: 1px;background-color:#ff004a;display:none;\"></span><img src=\"https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net/public/chat.png\" /></div>";
-       // $('#btnCinde_Lat').hide();
-        window.sessionStorage.setItem('lat_tenanttoken', lat_tenantToken);
-        LATConnect();
+        setTimeout(function () {
+            objDivElement.onclick = function () { latclick() };
+            //  lat_container.innerHTML = "<div id=\"btnCinde_Lat\"  onclick=\"latclick();\"><span id=\"cinde_latbadge\" class=\"badge\" style=\"position: absolute;top: 1px;right: 1px;background-color:#ff004a;display:none;\"></span><img src=\"https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net/public/chat.png\" /></div>";
+            // $('#btnCinde_Lat').hide();
+            window.sessionStorage.setItem('lat_tenanttoken', lat_tenantToken);
+            LATConnect();
+        }, 2000);
     } else {
         console.log("LAT: Tenant token invalid or null.");
     }
@@ -267,7 +311,7 @@ lat_bindEvent(window, 'message', function (e) {
 
         } else {
             if (e.data.action === 'lat_ignore') {
-debugger
+                debugger
                 var f = userqueue.findIndex(function (o) { return o.cid == e.data.uinfo.cid; });
                 if (f > -1) {
                     userqueue.splice(f, 1);
@@ -296,7 +340,7 @@ debugger
                     if (e.data.action === 'lat_chllog') {
                         proxy.invoke('getHistory', e.data.cid).done(function (response) {
                             if (response.ResponseCode == "409") {
-                               // $("#live-agent-counter").text(userqueue.length - 1);
+                                // $("#live-agent-counter").text(userqueue.length - 1);
                                 //lat_iframe.contentWindow.postMessage({ "action": "chllogFail", "log": "", "cid": e.data.cid, "isAcceptedUser": false }, '*');
                                 return;
                             }
@@ -361,7 +405,7 @@ var _createConnection = function () {
             if (lat_isFrameVisible) {
                 if (newuser.uid != lat_chatUser.userId) {
                     if (!IsDuplicateUserExists(userqueue, newuser)) {
-                       // lat_iframe.contentWindow.postMessage({ "action": "addUser", "user": newuser }, '*');
+                        // lat_iframe.contentWindow.postMessage({ "action": "addUser", "user": newuser }, '*');
                     }
                 }
             }
@@ -392,13 +436,13 @@ var _createConnection = function () {
 
         proxy.on('setQueue', function (myQueue) {
             if (lat_isFrameVisible) {
-               // lat_iframe.contentWindow.postMessage({ "action": "setqueue", "queue": myQueue }, '*');
+                // lat_iframe.contentWindow.postMessage({ "action": "setqueue", "queue": myQueue }, '*');
             }
-myQueue = myQueue.filter(function(el, i, x) {
-    return x.some(function(obj, j) {
-        return obj.cid === el.cid && (x = j);
-    }) && i == x;
-});
+            myQueue = myQueue.filter(function (el, i, x) {
+                return x.some(function (obj, j) {
+                    return obj.cid === el.cid && (x = j);
+                }) && i == x;
+            });
             userqueue = myQueue;
 
             $("#live-agent-counter").text(userqueue.length).show();
@@ -416,14 +460,14 @@ myQueue = myQueue.filter(function(el, i, x) {
         });
         proxy.on('removeQueue', function (cid) {
             if (lat_isFrameVisible) {
-               // lat_iframe.contentWindow.postMessage({ "action": "removequeue", "cid": cid }, '*');
+                // lat_iframe.contentWindow.postMessage({ "action": "removequeue", "cid": cid }, '*');
             }
             userqueue = userqueue.filter(function (a) { return a.cid !== cid; });
             $("#live-agent-counter").text(userqueue.length).show();
         });
         proxy.on('acceptDone', function (cid) {
             if (lat_isFrameVisible) {
-              //  lat_iframe.contentWindow.postMessage({ "action": "accepted", "cid": cid }, '*');
+                //  lat_iframe.contentWindow.postMessage({ "action": "accepted", "cid": cid }, '*');
             }
             var f = userqueue.findIndex(function (o) { return o.cid == cid; });
             if (f > -1) {
@@ -502,11 +546,13 @@ function startConnection() {
                 if (response.ResponseCode === "OK") {
                     try {
                         JSON.parse(response.ResponseMessage);
-                        $(objElement).find('#my_custom_icon').show();
+                        
+                        objDivElement.style.display = '';
+                        
 
                     } catch (e) {
 
-                    
+
                         window.sessionStorage.setItem('lat_tenanttoken', lat_tenantToken);
 
                     }
@@ -519,7 +565,7 @@ function startConnection() {
                 lat_Status = 'failed';
                 return;
             }
-            $(objElement).find('#my_custom_icon').show();
+            getIConElement().style.display = '';
             $('#' + lat_chatUser.refreshctrlid).val("1");
             setInterval(function () {
                 localStorage.setItem('lat_ts', new Date().getTime().toString());
@@ -530,12 +576,12 @@ function startConnection() {
     });
 }
 
-$("#hrefLogout").click(function () {
-    var userqueue = new Array({ 'connectionid': connection.id, 'agentId': lat_chatUser.userId });
-    var apiURL = 'https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net' + '/api/lat/removeIgnoreCid';
-    var blob = new Blob([JSON.stringify(inputs)], { type: "application/json" });
-    navigator.sendBeacon(apiURL, blob);
-});
+//$("#hrefLogout").click(function () {
+//    var userqueue = new Array({ 'connectionid': connection.id, 'agentId': lat_chatUser.userId });
+//    var apiURL = 'https://snow-cinde-eureka-integrationenv-f0ejhcbbg4aee3c6.centralindia-01.azurewebsites.net' + '/api/lat/removeIgnoreCid';
+//    var blob = new Blob([JSON.stringify(inputs)], { type: "application/json" });
+//    navigator.sendBeacon(apiURL, blob);
+//});
 
 
 var ClearUserAgentChat = function () {
@@ -601,3 +647,4 @@ function IsDuplicateUserExists(queue, newuser) {
     }
     return inArray;
 }
+
